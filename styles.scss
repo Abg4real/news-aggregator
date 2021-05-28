@@ -1,0 +1,24 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before,*::after {
+    box-sizing: border-box;
+}
+body {
+    max-width:1200px;
+    header {
+        margin:1rem auto;
+        h1 {
+            width: fit-content;
+            margin: 2rem auto;
+        }
+    }
+    .search-section {
+        1
+        #search {
+            width:80%;
+            max-width: 90%;
+            margin:0px auto;
+        }
+    }
+}

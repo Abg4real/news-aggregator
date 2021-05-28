@@ -1,0 +1,32 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *:before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  max-width: 1200px;
+}
+
+body header {
+  margin: 1rem auto;
+}
+
+body header h1 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2rem auto;
+}
+
+body .search-section 1
+#search {
+  width: 80%;
+  max-width: 90%;
+  margin: 0px auto;
+}
+/*# sourceMappingURL=styles.css.map */
