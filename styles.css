@@ -1,15 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-*, *:before, *::after {
+*,
+*:before,
+*::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   max-width: 1200px;
+  margin: 1rem auto;
 }
 
 body header {
@@ -23,10 +28,167 @@ body header h1 {
   margin: 2rem auto;
 }
 
-body .search-section 1
-#search {
+body .search-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .search-section #search {
   width: 80%;
   max-width: 90%;
   margin: 0px auto;
+  padding: 10px;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+body .search-section #search:focus {
+  border: none;
+  border-bottom: 2px solid #4072df;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+body .search-section input[type="submit"] {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem;
+}
+
+body .output-section {
+  width: 99%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+body .output-section .title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2rem auto;
+}
+
+body .output-section .loader {
+  display: none;
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+  margin: 0px auto;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+body .output-section #news-articles {
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  gap: 2rem;
+  padding: 0px;
+  max-width: 1150px;
+}
+
+body .output-section #news-articles .article {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+body .output-section #news-articles .article a {
+  width: 270px;
+  height: 500px;
+  min-width: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ccfdff;
+  border: 2px solid cadetblue;
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+body .output-section #news-articles .article a .article-img {
+  width: 100%;
+  height: 200px;
+  justify-self: flex-start;
+}
+
+body .output-section #news-articles .article a .article-title {
+  max-width: 200px;
+}
+
+body .output-section #news-articles .article a .article-description {
+  max-width: 200px;
+}
+
+body .output-section #news-articles .article a .article-author {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+body .output-section #news-articles a:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 0 0 10px #589da0;
+          box-shadow: 0 0 10px #589da0;
 }
 /*# sourceMappingURL=styles.css.map */
