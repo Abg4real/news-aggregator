@@ -21,7 +21,7 @@ function generateUI(data){
     data.forEach((result)=>{
         let list =  `
         <li class="article">
-        <a class="card_link" href="#" target="_blank">
+        <a class="card_link" href=${result.url} target="_blank">
             <img
               src=${result.urlToImage}
               class="article-img"
