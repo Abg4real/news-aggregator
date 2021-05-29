@@ -3,11 +3,18 @@ const newsArticles = document.getElementById('news-articles');
 const search = document.querySelector('#search');
 const form = document.querySelector('.search-section');
 const loader = document.querySelector('.loader');
-// form.addEventListener('submit',(e)=>{
-//     e.preventDefault();
-//     searchResults();
-// });
-let loading = true;
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    searchResults();
+});
+let theme = 'light';
+const themeToggle = document.querySelector('.theme-toggle');
+themeToggle.addEventListener('click',()=>{
+    search.classList.toggle('search-dark');
+    document.body.classList.toggle('dark');
+    const cards = document.querySelectorAll('.card_link');
+    cards.forEach(card=>card.classList.toggle('a-dark'));
+})
 search.addEventListener('input',searchResults);
 function generateUI(data){
     string = '';
@@ -44,9 +51,10 @@ function removeLoading(){
 async function headlines() {
     addLoading();
     document.querySelector('.title').innerText = 'Headlines';
-    const results = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=f662f9435c314ef3bc7b0d06f3b0441b`);
+    const results = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=4eba71df3cea40d2a8d1b000e02f1c17`);
     if(!results.ok){
         console.log(err=>console.err(err));
+        removeLoading();
         return;
     }
     let data = await results.json();
@@ -58,6 +66,7 @@ async function headlines() {
 headlines();
 
 async function searchResults(){
+    document.querySelector('.message').style.display = 'none';
     document.querySelector('.title').innerText = 'Results';
     addLoading();
     const keyword = search.value;
@@ -80,18 +89,24 @@ async function searchResults(){
 
         return [year, month, day].join('-');
     };
-    loading = true;
     addLoading();
     const dateNew = formatDate(date);
-    const url = `https://newsapi.org/v2/everything?q=${keyword}&from=${dateNew}&language=en&sortBy=popularity&apiKey=f662f9435c314ef3bc7b0d06f3b0441b`
-    console.log(url);
+    const url = `https://newsapi.org/v2/everything?q=${keyword}&from=${dateNew}&language=en&sortBy=popularity&apiKey=4eba71df3cea40d2a8d1b000e02f1c17`
     const results = await fetch(url);
     if(!results.ok){
+        removeLoading();
         console.log(err=>console.err(err));
         return;
     }
     let data = await results.json();
-    console.log(data);
     removeLoading();
+    if(data.totalResults<=0){
+        console.log('No results!');
+        document.querySelector('.message').style.display = 'block';
+        newsArticles.style.display = 'none';
+        return;
+    }
+    document.querySelector('.message').style.display = 'none';
+    console.log(data);
     generateUI(data.articles);
 }

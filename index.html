@@ -11,6 +11,7 @@
   <body>
     <header>
       <h1>News Aggregator</h1>
+      <span class="theme-toggle">Night Mode</span>
     </header>
     <form class="search-section">
       <input
@@ -24,6 +25,9 @@
     <div class="output-section">
       <h2 class="title">Headlines</h2>
       <div class="loader"></div>
+      <div class="message" style="display: none">
+        No result found. Try again!
+      </div>
       <ul id="news-articles"></ul>
     </div>
     <script src="./js/index.js"></script>
