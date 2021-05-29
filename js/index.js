@@ -2,12 +2,30 @@ const outputSection = document.querySelector('.output-section');
 const newsArticles = document.getElementById('news-articles'); 
 const search = document.querySelector('#search');
 const form = document.querySelector('.search-section');
+const pagination = document.querySelector('.page');
 const loader = document.querySelector('.loader');
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     searchResults();
 });
 let theme = 'light';
+// let current = 'Headlines';
+let pageNo = 1;
+// let totalPages;
+// let totalPagesShowing = document.getElementsByClassName('page__numbers');
+// console.log(totalPagesShowing);
+// pagination.addEventListener('click',(e)=>{
+//    pageNo = e.target.innerText;
+//    document.querySelectorAll('.page__numbers').forEach(node=>{
+//        node.classList.remove('active');
+//    })
+//    e.target.classList.add('active');
+//    if(current==='Headlines'){
+//        headlines();
+//    } else {
+//        searchResults();
+//    }
+// })
 const themeToggle = document.querySelector('.theme-toggle');
 themeToggle.addEventListener('click',()=>{
     search.classList.toggle('search-dark');
@@ -26,6 +44,13 @@ themeToggle.addEventListener('click',()=>{
 })
 search.addEventListener('input',searchResults);
 function generateUI(data){
+    // if(totalPages < 6){
+    //     for(let i=5;i>=totalPages;i++){
+    //          const deleteElement = totalPagesShowing[i];
+    //          console.log(deleteElement);
+    //     }
+    // }
+    document.querySelector('.title').innerText = current;
     string = '';
     data.forEach((result)=>{
         let list =  `
@@ -59,8 +84,8 @@ function removeLoading(){
 }
 async function headlines() {
     addLoading();
-    document.querySelector('.title').innerText = 'Headlines';
-    const results = await fetch(`https://newsapi.org/v2/top-headlines?country=in&apiKey=4eba71df3cea40d2a8d1b000e02f1c17`);
+    current = 'Headlines'
+    const results = await fetch(`https://newsapi.org/v2/top-headlines?country=in&page=${pageNo}&apiKey=4eba71df3cea40d2a8d1b000e02f1c17`);
     if(!results.ok){
         console.log(err=>console.err(err));
         removeLoading();
@@ -68,6 +93,7 @@ async function headlines() {
     }
     let data = await results.json();
     console.log(data);
+    totalPages = Math.ceil(data.totalResults / 20);
     removeLoading();
     newsArticles.style.display = 'grid';
     generateUI(data.articles);
@@ -76,7 +102,7 @@ headlines();
 
 async function searchResults(){
     document.querySelector('.message').style.display = 'none';
-    document.querySelector('.title').innerText = 'Results';
+    current = 'Results';
     addLoading();
     const keyword = search.value;
     if(!keyword){
@@ -115,6 +141,7 @@ async function searchResults(){
         newsArticles.style.display = 'none';
         return;
     }
+    totalPages = Math.ceil(data.totalResults / 20);
     document.querySelector('.message').style.display = 'none';
     console.log(data);
     generateUI(data.articles);
