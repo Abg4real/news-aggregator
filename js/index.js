@@ -14,6 +14,15 @@ themeToggle.addEventListener('click',()=>{
     document.body.classList.toggle('dark');
     const cards = document.querySelectorAll('.card_link');
     cards.forEach(card=>card.classList.toggle('a-dark'));
+    if(theme === 'light'){
+        themeToggle.innerText = 'light_mode';
+        themeToggle.style.color = 'white';
+        theme='dark';
+    } else {
+        themeToggle.innerText = 'dark_mode';
+        themeToggle.style.color = 'black';
+        theme = 'light';
+    }
 })
 search.addEventListener('input',searchResults);
 function generateUI(data){

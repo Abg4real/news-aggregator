@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Limelight&family=Roboto:wght@400;500&display=swap");
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -22,37 +22,33 @@ body {
   margin: 1rem auto;
 }
 
-body header {
-  margin: 1rem auto;
+body header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  max-width: 1200px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1rem;
 }
 
-body header h1 {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 2rem;
+body header nav .nav-title {
+  margin: 10px;
+  font-size: 2rem;
+  font-family: "Limelight", sans-serif;
 }
 
-body header .theme-toggle {
-  font-size: 1.5em;
-  margin: 2rem;
+body header nav .theme-toggle {
+  font-size: 3em;
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
 
-body header .theme-toggle:hover {
+body header nav .theme-toggle:hover {
   cursor: pointer;
   font-weight: 500;
 }
@@ -68,6 +64,7 @@ body .search-section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 3rem;
 }
 
 body .search-section #search {
@@ -123,9 +120,7 @@ body .output-section .title {
 body .output-section .loader {
   display: none;
   border: 16px solid #f3f3f3;
-  /* Light grey */
   border-top: 16px solid #3498db;
-  /* Blue */
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -227,6 +222,7 @@ body .output-section #news-articles .article a .article-author {
 body .output-section #news-articles a:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+  border-radius: 10px;
   -webkit-box-shadow: 0 0 10px #589da0;
           box-shadow: 0 0 10px #589da0;
 }
