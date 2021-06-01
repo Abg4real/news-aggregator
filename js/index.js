@@ -44,34 +44,36 @@ themeToggle.addEventListener('click',()=>{
 })
 search.addEventListener('input',searchResults);
 function generateUI(data){
-    // if(totalPages < 6){
-    //     for(let i=5;i>=totalPages;i++){
-    //          const deleteElement = totalPagesShowing[i];
-    //          console.log(deleteElement);
-    //     }
-    // }
     document.querySelector('.title').innerText = current;
-    string = '';
-    data.forEach((result)=>{
-        let list =  `
-        <li class="article">
-        <a class="card_link" href=${result.url} target="_blank">
-            <img
-              src=${result.urlToImage}
-              class="article-img"
-              alt="article-image"
-            />
-            <h3 class="article-title">${result.title.slice(0,50)}...</h3>
-            <p class="article-description">
-              ${result.description ? result.description.slice(0,100) : 'Empty Description'}...
-            </p>
-            <span class="article-author">${result.author}</span>
-        </a>
-      </li>`
-      list = list.trim();
-      string+=list;
-    });
-    newsArticles.innerHTML = string;
+    newsArticles.innerHTML = '';
+    data.forEach(result=>{
+        let li = document.createElement('li');
+        li.classList.add('article');
+        let a = document.createElement('a');
+        a.classList.add('card_link');
+        a.href = result.url;
+        a.target = "_blank";
+        let img = document.createElement('img');
+        img.src = result.urlToImage;
+        img.classList.add('article-img');
+        img.alt = 'article image'
+        a.appendChild(img);
+        let h3 = document.createElement('h3');
+        h3.classList.add('article-title');
+        h3.innerText = result.title.slice(0,40) + '...';
+        a.appendChild(h3);
+        let p = document.createElement('p');
+        p.classList.add('article-description');
+        console.log(result.description);
+        let description = result.description ? result.description.replace(/\r?\n|\r/g,"").slice(0,150) : 'No description given';
+        p.innerText = description + '...';
+        a.appendChild(p);
+        let span = document.createElement('span');
+        span.classList.add('article-author');
+        a.appendChild(span);
+        li.appendChild(a);
+        newsArticles.appendChild(li);
+    })
 }
 function addLoading(){
     newsArticles.style.display = 'none';
